@@ -1,8 +1,10 @@
+import Header from './components/Header';
+
 function App() {
    return (
-      <div>
-         <h1>Clima React</h1>
-      </div>
+      <>
+         <Header titulo='Clima React App' />
+      </>
    );
 }
 
