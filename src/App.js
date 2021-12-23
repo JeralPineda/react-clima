@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Clima from './Clima';
+import Error from './components/Error';
 import Formulario from './components/Formulario';
 import Header from './components/Header';
 
@@ -11,7 +12,8 @@ function App() {
    });
 
    const [consultar, setConsultar] = useState(false);
-   const [result, setResult] = useState({});
+   const [resultado, setResultado] = useState({});
+   const [error, setError] = useState(false);
 
    const { ciudad, pais } = busqueda;
 
@@ -24,12 +26,26 @@ function App() {
             const respuesta = await fetch(url);
             const resultado = await respuesta.json();
 
-            setResult(resultado);
+            setResultado(resultado);
             setConsultar(false);
+
+            // Detecta si hubo resultados correctos en la consulta
+            if (resultado.cod === '404') {
+               setError(true);
+            } else {
+               setError(false);
+            }
          }
       };
       consultarApi();
    }, [consultar, ciudad, pais]);
+
+   let componente;
+   if (error) {
+      componente = <Error mensaje='Ciudad no encontrada' />;
+   } else {
+      componente = <Clima resultado={resultado} />;
+   }
 
    return (
       <>
@@ -47,9 +63,7 @@ function App() {
                      />
                   </div>
 
-                  <div className='col m6 s12'>
-                     <Clima result={result} />
-                  </div>
+                  <div className='col m6 s12'>{componente}</div>
                </div>
             </div>
          </div>
