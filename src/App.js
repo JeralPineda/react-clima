@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Clima from './Clima';
+import Clima from './components/Clima';
 import Error from './components/Error';
 import Formulario from './components/Formulario';
 import Header from './components/Header';
