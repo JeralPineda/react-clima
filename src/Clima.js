@@ -1,8 +1,8 @@
 import { ObtenerTiempo } from './helpers/tiempo';
 
-const Clima = ({ result }) => {
+const Clima = ({ resultado }) => {
    //  Extraer los valores
-   const { name, main } = result;
+   const { name, main } = resultado;
 
    if (!name) return null;
 
