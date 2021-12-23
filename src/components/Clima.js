@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { ObtenerTiempo } from '../helpers/tiempo';
 
 const Clima = ({ resultado }) => {
@@ -30,6 +32,10 @@ const Clima = ({ resultado }) => {
          </div>
       </div>
    );
+};
+
+Clima.protoTypes = {
+   resultado: PropTypes.object.isRequired,
 };
 
 export default Clima;
